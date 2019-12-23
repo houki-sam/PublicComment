@@ -1,0 +1,12 @@
+#myCarousel{
+    padding-bottom: 70px;
+}
+
+.carousel-item img {
+    width:auto;
+    height:100%;
+  }
+  
+  .carousel-item{
+    height: 100%;
+  }

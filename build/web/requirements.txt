@@ -1,0 +1,16 @@
+django>=2.2.4
+psycopg2==2.8.3
+uwsgi
+django-environ==0.4.5
+beautifulsoup4==4.8.0
+requests==2.22.0
+django-slack==5.14.0
+django-bootstrap4==1.0.1
+django-bootstrap-datepicker-plus==3.0.5
+django-widget-tweaks
+celery==4.3.0
+redis==3.3.0
+django_celery_beat==1.5.0     #使用しない場合はインストール不要
+django-celery-results==1.1.2
+django-channels
+django-cors-headers

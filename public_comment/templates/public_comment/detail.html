@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+    パブリックコメント
+{% endblock %}
+
+{% block alert %}
+{% if message %}
+  <div class="alert alert-primary m-0" role="alert"><strong>{{message}}</strong>{{sub_message}}</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container marketing">
+  <div class="row">
+    <div class="col-sm-12 mt-3 mb-3">
+      <div class="card pt-3 pr-2 pl-2 m-0">
+          <h1>{{title}}</h1>
+          <p>検索条件を入力して下さい</p>
+          <form method="GET">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary form-control">送信</button>
+          </form>
+        </div>
+     </div>
+    </div>
+    <div class="row">
+
+    {% for p in result %}
+    <div class="col-sm-12 mt-3 mb-3"></div>
+      <div class="card pt-3 pr-2 pl-2 pb-3 m-0 w-100">
+          <div class="row no-gutters">
+              <div class="col-3 my-auto">
+                  <img class="card-img" src="{% static 'img/search.svg' %}" style="height:100px;">
+              </div>
+              <div class="col-9">
+                  <div class="card-body">
+                      <div class="card-header p-0">
+                          <h6>{{p.contact}}</h6>
+                      </div>
+                      <a href="https://search.e-gov.go.jp/servlet/{{p.url}}">
+                      <p>{{p.outline}}</p>
+                    </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    {% endfor %}
+    
+  
+    </div>
+
+
+</div>
+{% endblock %}
+      

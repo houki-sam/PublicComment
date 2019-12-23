@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">パブリックコメント</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {% if user.is_authenticated %}
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'search:index' %}">検索<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">設定</a>
+            </li>
+            <li>
+                <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">ログアウト</a>
+              </li>
+          </ul>
+          {% endif %}
+            <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-item nav-link" href="#">
+                  {{request.user.username}}さん、こんにちは
+                </a>
+              </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'accounts:login' %}">
+              ようこそ！ログインはこちら
+            </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
