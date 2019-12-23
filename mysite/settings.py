@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
     'corsheaders',
+    'accounts',
 ]
 
 MIDDLEWARE = [
