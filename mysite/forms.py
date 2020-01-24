@@ -1,8 +1,10 @@
-import bootstrap_datepicker_plus as datetimepicker
 from django import forms
+from .models import ContactModel
 from public_comment.models import Comment
+import bootstrap_datepicker_plus as datetimepicker
 from django.core.mail import BadHeaderError, send_mail
 
+"""
 class ContactForm(forms.Form):
     name = forms.CharField(
         label='',
@@ -26,6 +28,12 @@ class ContactForm(forms.Form):
             'placeholder': "お問い合わせ内容",
         }),
     )
+"""
+
+class ContactForm(forms.ModelForm):
+    class Meta():
+        model = ContactModel
+        fields = '__all__'
 
     def send_email(self):
         subject = "お問い合わせ"

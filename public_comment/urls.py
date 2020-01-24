@@ -24,7 +24,5 @@ urlpatterns = [
     path('keyword',views.detail,name="detail"),
     path('keyword/<str:title>/',views.detail,name="detail_result"),
     path('agency',views.agency,name="agency"),
-    
     path('agency/<str:title>/',views.agency,name="agency_result"),
-    
 ]

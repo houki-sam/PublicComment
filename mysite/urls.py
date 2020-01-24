@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 
+app_name = "home"
 
 urlpatterns = [
     path('', Home.as_view(),name='index'),
     path('admin/', admin.site.urls),
     path('search/', include('public_comment.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls'),name="admin"),
     path('accounts/', include('django.contrib.auth.urls')),
     
 ]

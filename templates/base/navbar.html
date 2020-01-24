@@ -1,36 +1,40 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'index' %}">パブリックコメント</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            {% if user.is_authenticated %}
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'search:index' %}">検索<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">設定</a>
-            </li>
-            <li>
-                <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">ログアウト</a>
-              </li>
-          </ul>
-          {% endif %}
-            <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-item nav-link" href="#">
-                  {{request.user.username}}さん、こんにちは
-                </a>
-              </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'accounts:login' %}">
-              ようこそ！ログインはこちら
-            </a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </nav>
+{% load static %}
+<div class='fixed-top'>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="{% url 'index' %}">
+    Public Comment Crawler
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item mx-auto">
+          <a class="nav-link" href="{% url 'search:index' %}">Search</a>
+      </li>
+      <li class="nav-item mx-auto">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item mx-auto">
+          {% if user.get_username%}
+            <span class="navbar-text">{{ user.get_username }}</span>
+        {% else %}
+            <span class="navbar-text">Welcome Guest</span>
+        {% endif %}
+      </li>
+      <li class="nav-item mx-auto px-1">
+          <a type="button" class="btn btn-outline-secondary" href="{% url 'admin:index' %}">
+              Admin
+          </a>
+      </li>
+      <li class="nav-item mx-auto px-1">
+          <a type="button" class="btn btn-outline-secondary" href="{% url 'accounts:logout' %}">
+              Logout
+          </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>

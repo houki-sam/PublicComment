@@ -1,34 +1,43 @@
 {% load static %}
 {% load widget_tweaks %}
-{% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+
 <!doctype html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href = "{% static 'base.css' %}">
+    <title>{% block title %}Public Comment Crawler{% endblock %}</title>
+    <!-- bootstrapを読み込み -->
+    {% bootstrap_css %}
     <!-- bootstrap-datepickerを読み込む -->
     <link rel="stylesheet" type="text/css" href="{% static 'datepicker/css/bootstrap-datepicker.min.css'%}">
     <script type="text/javascript" src="{% static 'datepicker/js/bootstrap-datepicker.min.js'%}"></script>
     <script type="text/javascript" src="{% static 'datepicker/locales/bootstrap-datepicker.ja.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/scroll.js'%}"></script>
+    <!-- Material Design Bootstrap -->
     <!-- bootstrap-materialを読み込む-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="{% static 'mysite/style.css' %}" rel="stylesheet">
+    <!-- faviconを読み込む -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicons.ico' %}"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
 </head>
+<header>
+{% block alert %}
+{% endblock %}
+    {% include 'base/navbar.html' %}
+{% block header_content %}
+{% endblock %}
+</header>
 
 <body>
-    <header>
-        {% block alert %}
-        {% endblock %}
-        {% include 'base/navbar.html' %}
-    </header>
-    <main role="main">
-        {% block content %}
-        {% endblock %}
-    </main>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

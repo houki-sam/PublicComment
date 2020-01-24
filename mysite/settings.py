@@ -34,7 +34,7 @@ env.read_env('.env')
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['haik-crawler.japaneast.cloudapp.azure.com']
 ALLOWED_HOSTS = ["*"]
