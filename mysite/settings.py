@@ -176,18 +176,24 @@ DEFAULT_EMAIL = env("EMAIL_HOST_USER")
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_BEAT_SCHEDULE = {
+    'hello': {
+        'task': 'public_comment.crawling.fetch',
+        'schedule': crontab()  # execute every minute
+    }
+}
 
 CELERY_IMPORTS = ('public_comment.crawling.fetch')
 
 
 """
 LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = 'accounts:login'
 LOGOUT_REDIRECT_URL = '/'
 """
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
+"""
 CHANNELS = {
     "CHANNELS": {
         "slack": {
@@ -196,5 +202,5 @@ CHANNELS = {
         }
     }
 }
-
+"""
 AUTH_USER_MODEL = 'accounts.User'

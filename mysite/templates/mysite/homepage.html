@@ -23,9 +23,9 @@
 
 
 <div class="container">
-<h1 class="text-center">Feature</h1><hr/>
+<h1 class="text-center mt-3">Feature</h1><hr/>
 <div class="card-deck">
-  <div class="card mx-10">
+  <div class="card shadow-lg">
     <img class="card-img-top" src="{% static "img/search.svg" %}" alt="Card image cap">
     <div class="card-body">
       <h4 class="card-title">Search</h4>
@@ -33,7 +33,7 @@
       <p class="card-text"><small class="text-muted"></small></p>
     </div>
   </div>
-  <div class="card">
+  <div class="card shadow-lg">
   <div class="mr-8">
     <img class="card-img-top px-10px" src="{% static "img/mail.svg" %}" alt="Card image cap">
     <div class="card-body">
@@ -43,7 +43,7 @@
     </div>
   </div>
   </div>
-  <div class="card">
+  <div class="card shadow-lg">
     <img class="card-img-top" src="{% static "img/account.svg" %}" alt="Card image cap">
     <div class="card-body">
       <h4 class="card-title">Account</h4>
@@ -54,7 +54,5 @@
 </div>
 </div>
 
-{{ form.fullname}}
-{{ form.subject}}
 {% endblock %}
       

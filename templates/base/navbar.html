@@ -1,6 +1,6 @@
 {% load static %}
 <div class='fixed-top'>
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light shadow-lg">
     <a class="navbar-brand" href="{% url 'index' %}">
     Public Comment Crawler
   </a>
@@ -17,7 +17,7 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li class="nav-item mx-auto">
+      <li class="nav-item mx-auto px-1">
           {% if user.get_username%}
             <span class="navbar-text">{{ user.get_username }}</span>
         {% else %}

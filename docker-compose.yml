@@ -2,7 +2,7 @@ version: "3"
 services:
   db:
     image: postgres:11
-    container_name: pc_postgres
+    container_name: postgres
     ports:
       - 5432:5432
     volumes:
@@ -16,13 +16,12 @@ services:
     restart: always
     user: root
 
-  web:
-    build: ./build/web
-    container_name: pc_web
+  app:
+    build: ./build/app
+    container_name: app
     command: uwsgi --socket :8001 --module mysite.wsgi
     volumes:
-      - ./:/code
-      - ./static:/static
+      - ./:/app
     expose:
       - "8001"
     depends_on:
@@ -31,7 +30,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: pc_nginx
+    container_name: nginx1
     ports:
       - "80:80"
     volumes:
@@ -39,40 +38,30 @@ services:
       - ./build/nginx/uwsgi_params:/etc/nginx/uwsgi_params
       - ./static:/static
     depends_on:
-      - web
+      - app
 
   redis:
-    container_name: pc_redis
+    container_name: redis1
     image: "redis:alpine"
 
   celery:
-    container_name: pc_celery
-    build: ./build/web
+    container_name: celery1
+    build: ./build/app
     command: celery -A mysite worker -l info
     volumes:
-      - ./:/code
-    environment:
-      - DB_HOST=db
-      - DB_NAME=postgres
-      - DB_USER=postgres
-      - DB_PASS=password
+      - ./:/app
     depends_on:
-      - web
+      - app
       - db
       - redis
 
   celery-beat:
-    build: ./build/web
-    container_name: pc_celery-beat
+    build: ./build/app
+    container_name: celery-beat1
     command: celery -A mysite beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler --pidfile=
     volumes:
-      - ./:/code
-    environment:
-      - DB_HOST=db
-      - DB_NAME=postgres
-      - DB_USER=postgres
-      - DB_PASS=password
+      - ./:/app
     depends_on:
-      - web
+      - app
       - db
       - redis
